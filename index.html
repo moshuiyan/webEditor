@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/webEditor/MoEditor.svg">
+  <title>Model Editor</title>
+  <style>
+  body {
+      padding: 0;
+      margin: 0;
+      position: relative;
+      background: #1a1a2e;
+  }
+  #app {
+      height:100vh;
+
+  }
+
+  #viewports, #three {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+  }
+  #three {
+      height: 100%;
+  }
+  #viewports {
+      height: calc(100% - 29px); /*减去顶部栏*/
+      z-index: 1;
+  }
+  </style>
+  <script type="module" crossorigin src="/webEditor/assets/index-D2Rke8pM.js"></script>
+  <link rel="stylesheet" crossorigin href="/webEditor/assets/index-B8iWZ0Uj.css">
+</head>
+<body>
+  <!--<canvas id="three"></canvas>-->
+  <div id="app">
+      <div id="viewports"></div>
+  </div>
+
+</body>
+</html>

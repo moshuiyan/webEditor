@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!-- 背景圆角 -->
+  <rect width="1024" height="1024" rx="180" fill="#0F172A"/>
+  
+  <!-- 渐变定义 -->
+  <defs>
+    <linearGradient id="mGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA"/>
+      <stop offset="100%" stop-color="#22D3EE"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- 字母 M 主体 -->
+  <path d="M230 720V300h120l90 240 90-240h120v420H530V480l-90 240-90-240v240H230z" fill="url(#mGradient)"/>
+  
+  <!-- 数据节点 -->
+  <circle cx="710" cy="360" r="18" fill="#FFFFFF"/>
+  <circle cx="710" cy="520" r="18" fill="#FFFFFF"/>
+  
+  <!-- 数据流管线 -->
+  <path d="M710 360c0 40-50 60-80 80-30 20-80 40-80 80" stroke="#FFFFFF" stroke-width="12" fill="none" stroke-linecap="round"/>
+  
+  <!-- 小箭头 -->
+  <path d="M550 560l-10-10-10 10 10 10 10-10z" fill="#FFFFFF"/>
+</svg>
