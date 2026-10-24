@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模型预览</title>
+  <style>
+    /* 发布页固定模板：全屏视口 + 加载遮罩 + 播放条。不含任何编辑器 UI。 */
+    html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #1a1a2e; }
+    /* 显式尺寸而不是 inset:0：RenderEngine 会把 host 的 position 改写为 relative
+       （编辑器布局靠外层撑高，无影响），relative + inset:0 会塌成 0 高。 */
+    #viewports { position: relative; width: 100vw; height: 100vh; }
+    #loading {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 10px;
+      background: #1a1a2e; color: #c8ccd4; font: 13px/1.6 system-ui, sans-serif;
+      transition: opacity .4s; z-index: 10;
+    }
+    #loading.hide { opacity: 0; pointer-events: none; }
+    #loading .bar { width: 220px; height: 4px; border-radius: 2px; background: #2c2f3a; overflow: hidden; }
+    #loading .bar > i { display: block; height: 100%; width: 0; background: #4a90d9; transition: width .2s; }
+    #loading .err { color: #e06c75; white-space: pre-wrap; max-width: 80vw; }
+    /* 目录回退按钮：远程站点没有项目文件时出现（开发模式「发布→立马预览」走这条）。 */
+    #btn-pick {
+      appearance: none; border: 1px solid #4a90d9; background: #20232b; color: #c8ccd4;
+      height: 30px; padding: 0 16px; border-radius: 6px; cursor: pointer; font-size: 13px;
+    }
+    #btn-pick:hover { background: #2a3550; color: #fff; }
+    #bar {
+      position: absolute; left: 12px; bottom: 12px; z-index: 5;
+      display: flex; align-items: center; gap: 6px; padding: 6px 10px;
+      background: rgba(24, 26, 32, .88); border: 1px solid #2c2f3a; border-radius: 8px;
+      color: #c8ccd4; font: 12px/1 system-ui, sans-serif; user-select: none;
+    }
+    #bar button {
+      appearance: none; border: 1px solid #2c2f3a; background: #20232b; color: #c8ccd4;
+      height: 24px; min-width: 26px; padding: 0 8px; border-radius: 4px; cursor: pointer;
+      font-size: 12px; line-height: 1;
+    }
+    #bar button:hover { background: #2a3550; color: #fff; border-color: #4a90d9; }
+    #bar .frame { color: #8a8f9c; font-variant-numeric: tabular-nums; min-width: 70px; text-align: center; }
+  </style>
+  <script type="module" crossorigin src="/assets/viewer-7k23v_xo.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/HandleVault-Drbky1Dk.js">
+</head>
+<body>
+  <div id="viewports"></div>
+  <div id="loading">
+    <div id="loading-text">加载中…</div>
+    <div class="bar"><i id="loading-bar"></i></div>
+    <button id="btn-pick" hidden>选择项目目录…</button>
+    <div class="err" id="loading-err"></div>
+  </div>
+  <div id="bar" hidden>
+    <button id="btn-play" title="播放 / 暂停（空格）">▶</button>
+    <button id="btn-stop" title="回到起始帧">⏮</button>
+    <span class="frame" id="frame-label"></span>
+  </div>
+</body>
+</html>
